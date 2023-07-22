@@ -1,0 +1,22 @@
+
+.input_form
+{
+    height: auto;
+    width: 600px;;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    background-color: rgb(255, 0, 17);
+}
+
+.input_form input
+{
+    width: 500px;
+    padding:10px;
+    margin: auto;
+}
+
+.input_form button{
+    margin: 10px;
+}
