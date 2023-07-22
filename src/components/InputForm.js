@@ -2,10 +2,10 @@
 import {useState} from 'react';
 import './InputForm.css';
 
-const InputForm=()=>
+const InputForm=(props)=>
 {
 
-    const [userData,setUserData]=useState({userName:"",userAge:0});
+    const [userData,setUserData]=useState({userName:"",userAge:"",id:""});
      
     const stateHandler=(id,value)=>
     {
@@ -19,6 +19,14 @@ const InputForm=()=>
     const formHandler=(event)=>
     {
         event.preventDefault();
+        if(userData.userName.trim().length===0|| +userData.userAge<1) // userAge is stored as a string and to convert it to number add + in front.
+        {
+            return;
+        }
+        // console.log(userData);
+        const newUserData={userName:userData.userName, userAge:userData.userAge,id:Math.random().toString()};
+         props.userDataAdd(newUserData);
+        setUserData({userName:"",userAge:""});
     }
 
 
@@ -29,7 +37,7 @@ const InputForm=()=>
 </div>
 <div className="mb-3">
   <label htmlFor="formGroupExampleInput2" className="form-label">Age(In years)</label>
-  <input type="Number" className="form-control" onChange={(event)=>{stateHandler("userAge",event.target.value)}} id="formGroupExampleInput2"/>
+  <input type="number" className="form-control" onChange={(event)=>{stateHandler("userAge",event.target.value)}} value={userData.userAge} id="formGroupExampleInput2"/>
 </div>
 <button type="submit" className="btn btn-primary">Add User</button>
 </form>
